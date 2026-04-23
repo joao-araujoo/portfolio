@@ -133,9 +133,9 @@ const translations = {
 
     // Project Data
     faltometroTitle: "Faltômetro UNIFESP",
-    faltometroDesc: "Sistema de controle de faltas para estudantes da UNIFESP com 150+ usuários conectados.",
+    faltometroDesc: "Sistema de controle de faltas para estudantes da UNIFESP com 200+ usuários conectados.",
     faltometroLongDesc:
-      "O Faltômetro UNIFESP é uma aplicação web desenvolvida com auxílio de IA para ajudar estudantes a controlar suas faltas de forma eficiente. Atualmente em uso por mais de 150 usuários conectados, o sistema permite cadastrar disciplinas, registrar faltas e acompanhar o limite permitido por matéria, sendo uma ferramenta essencial na vida acadêmica dos estudantes.",
+      "O Faltômetro UNIFESP é uma aplicação web desenvolvida com auxílio de IA para ajudar estudantes a controlar suas faltas de forma eficiente. Atualmente em uso por mais de 200 usuários conectados, o sistema permite cadastrar disciplinas, registrar faltas e acompanhar o limite permitido por matéria, sendo uma ferramenta essencial na vida acadêmica dos estudantes.",
 
     gastafofooTitle: "GastaFofo",
     gastafofooDesc: "Aplicação de controle financeiro pessoal com interface moderna e recursos avançados.",
@@ -159,7 +159,7 @@ const translations = {
     intuitiveDashboard: "Dashboard intuitivo e responsivo",
     dataVisualization: "Visualização clara dos dados de frequência",
     mobileOptimized: "Otimizado para dispositivos móveis",
-    activeUsers: "150+ usuários conectados",
+    activeUsers: "200+ usuários conectados",
     aiAssisted: "Desenvolvido com auxílio de IA",
 
     expenseTracking: "Rastreamento detalhado de gastos",
@@ -265,9 +265,9 @@ const translations = {
 
     // Project Data
     faltometroTitle: "Faltômetro UNIFESP",
-    faltometroDesc: "Absence control system for UNIFESP students with 150+ connected users.",
+    faltometroDesc: "Absence control system for UNIFESP students with 200+ connected users.",
     faltometroLongDesc:
-      "Faltômetro UNIFESP is a web application developed with AI assistance to help students efficiently control their absences. Currently in use by over 150 connected users, the system allows registering subjects, recording absences, and tracking permitted limits per subject, being an essential tool in students' academic life.",
+      "Faltômetro UNIFESP is a web application developed with AI assistance to help students efficiently control their absences. Currently in use by over 200 connected users, the system allows registering subjects, recording absences, and tracking permitted limits per subject, being an essential tool in students' academic life.",
 
     gastafofooTitle: "GastaFofo",
     gastafofooDesc: "Personal financial control application with modern interface and advanced features.",
@@ -291,7 +291,7 @@ const translations = {
     intuitiveDashboard: "Intuitive and responsive dashboard",
     dataVisualization: "Clear visualization of attendance data",
     mobileOptimized: "Optimized for mobile devices",
-    activeUsers: "150+ connected users",
+    activeUsers: "200+ connected users",
     aiAssisted: "Developed with AI assistance",
 
     expenseTracking: "Detailed expense tracking",
@@ -397,9 +397,9 @@ const translations = {
 
     // Project Data
     faltometroTitle: "Faltômetro UNIFESP",
-    faltometroDesc: "Sistema de control de faltas para estudiantes de UNIFESP con 150+ usuarios conectados.",
+    faltometroDesc: "Sistema de control de faltas para estudiantes de UNIFESP con 200+ usuarios conectados.",
     faltometroLongDesc:
-      "Faltômetro UNIFESP es una aplicación web desarrollada con asistencia de IA para ayudar a los estudiantes a controlar sus faltas de manera eficiente. Actualmente en uso por más de 150 usuarios conectados, el sistema permite registrar materias, registrar faltas y seguir límites permitidos por materia, siendo una herramienta esencial en la vida académica de los estudiantes.",
+      "Faltômetro UNIFESP es una aplicación web desarrollada con asistencia de IA para ayudar a los estudiantes a controlar sus faltas de manera eficiente. Actualmente en uso por más de 200 usuarios conectados, el sistema permite registrar materias, registrar faltas y seguir límites permitidos por materia, siendo una herramienta esencial en la vida académica de los estudiantes.",
 
     gastafofooTitle: "GastaFofo",
     gastafofooDesc: "Aplicación de control financiero personal con interfaz moderna y características avanzadas.",
@@ -423,7 +423,7 @@ const translations = {
     intuitiveDashboard: "Dashboard intuitivo y responsivo",
     dataVisualization: "Visualización clara de datos de asistencia",
     mobileOptimized: "Optimizado para dispositivos móviles",
-    activeUsers: "150+ usuarios conectados",
+    activeUsers: "200+ usuarios conectados",
     aiAssisted: "Desarrollado con asistencia de IA",
 
     expenseTracking: "Seguimiento detallado de gastos",
