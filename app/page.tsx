@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
+import { motion, useScroll, useTransform, AnimatePresence, type HTMLMotionProps, type Variants } from "framer-motion"
 import { useState, useEffect, useRef, createContext, useContext } from "react"
 import {
   Github,
@@ -25,6 +25,25 @@ import {
   Briefcase,
   University,
 } from "lucide-react"
+import type { IconType } from "react-icons"
+import {
+  SiAnthropic,
+  SiCss,
+  SiFigma,
+  SiFramework7,
+  SiGit,
+  SiHtml5,
+  SiJavascript,
+  SiJquery,
+  SiMongodb,
+  SiMysql,
+  SiOpenai,
+  SiPhp,
+  SiPostgresql,
+  SiPwa,
+  SiReact,
+  SiTypescript,
+} from "react-icons/si"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
@@ -45,6 +64,14 @@ interface Project {
   year: string
   team: string
   status: string
+}
+
+interface Skill {
+  name: string
+  color: string
+  category: "all" | "frontend" | "backend" | "data" | "mobile" | "design" | "ai"
+  description: string
+  icon: IconType
 }
 
 type Theme = "light" | "dark"
@@ -523,7 +550,7 @@ function LanguageProvider({ children }: { children: React.ReactNode }) {
 }
 
 // Magnetic Button Component
-function MagneticButton({ children, className, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+function MagneticButton({ children, className, ...props }: HTMLMotionProps<"button">) {
   const ref = useRef<HTMLButtonElement>(null)
   const [position, setPosition] = useState({ x: 0, y: 0 })
 
@@ -667,6 +694,29 @@ function TechLogo({ name, color }: { name: string; color: string }) {
   )
 }
 
+function SkillCard({ skill, theme }: { skill: Skill; theme: Theme }) {
+  const Icon = skill.icon
+
+  return (
+    <div className="flex items-start gap-4">
+      <div
+        className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border transition-colors duration-300 ${
+          theme === "dark" ? "border-neutral-800 bg-neutral-900/90" : "border-neutral-200 bg-neutral-50"
+        }`}
+      >
+        <Icon className="h-7 w-7" style={{ color: skill.color }} />
+      </div>
+
+      <div className="min-w-0">
+        <h3 className="text-base font-semibold tracking-tight">{skill.name}</h3>
+        <p className={`mt-1 text-xs uppercase tracking-[0.18em] ${theme === "dark" ? "text-neutral-500" : "text-neutral-600"}`}>
+          {skill.description}
+        </p>
+      </div>
+    </div>
+  )
+}
+
 function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
@@ -674,6 +724,7 @@ function Portfolio() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+  const [activeSkillCategory, setActiveSkillCategory] = useState<Skill["category"]>("all")
   const { scrollYProgress } = useScroll()
   const { theme, toggleTheme } = useTheme()
   const { language, setLanguage, t } = useLanguage()
@@ -681,6 +732,7 @@ function Portfolio() {
   const containerRef = useRef<HTMLDivElement>(null)
 
   const smoothProgress = useTransform(scrollYProgress, [0, 1], [0, 1])
+  const defaultEase = [0.25, 0.46, 0.45, 0.94] as const
 
   useEffect(() => {
     const handleScroll = () => {
@@ -870,21 +922,43 @@ function Portfolio() {
     { code: "es" as Language, name: t("spanish"), flag: "ES" },
   ]
 
-  const skills = [
-    { name: "React", color: "#61DAFB" },
-    { name: "Next.js", color: "#000000" },
-    { name: "TypeScript", color: "#3178C6" },
-    { name: "JavaScript", color: "#F7DF1E" },
-    { name: "Tailwind CSS", color: "#06B6D4" },
-    { name: "Node.js", color: "#339933" },
-    { name: "MongoDB", color: "#47A248" },
-    { name: "MySQL", color: "#4479A1" },
-    { name: "REST APIs", color: "#FF6C37" },
-    { name: "Git", color: "#F05032" },
+  const skillCategories = [
+    { id: "all" as const, label: language === "pt" ? "Todos" : language === "es" ? "Todos" : "All" },
+    { id: "frontend" as const, label: "Frontend" },
+    { id: "backend" as const, label: "Backend" },
+    { id: "data" as const, label: language === "pt" ? "Dados" : language === "es" ? "Datos" : "Data" },
+    { id: "mobile" as const, label: "Mobile" },
+    { id: "design" as const, label: "Design" },
+    { id: "ai" as const, label: "AI" },
   ]
 
+  const skills: Skill[] = [
+    { name: "JavaScript", color: "#F7DF1E", category: "frontend", description: "Frontend", icon: SiJavascript },
+    { name: "HTML5", color: "#E34F26", category: "frontend", description: "Markup", icon: SiHtml5 },
+    { name: "CSS3", color: "#1572B6", category: "frontend", description: "Interface", icon: SiCss },
+    { name: "TypeScript", color: "#3178C6", category: "frontend", description: "Typed JS", icon: SiTypescript },
+    { name: "React", color: "#61DAFB", category: "frontend", description: "UI Library", icon: SiReact },
+    { name: "Framework7", color: "#EE350F", category: "mobile", description: "Hybrid Apps", icon: SiFramework7 },
+    { name: "jQuery", color: "#0769AD", category: "frontend", description: "DOM & UX", icon: SiJquery },
+    { name: "PHP", color: "#777BB4", category: "backend", description: "Backend", icon: SiPhp },
+    { name: "MySQL", color: "#4479A1", category: "data", description: "Relational DB", icon: SiMysql },
+    { name: "PostgreSQL", color: "#4169E1", category: "data", description: "Relational DB", icon: SiPostgresql },
+    { name: "MongoDB", color: "#47A248", category: "data", description: "NoSQL DB", icon: SiMongodb },
+    { name: "PWA", color: "#5A0FC8", category: "mobile", description: "Web + Mobile", icon: SiPwa },
+    { name: "Figma", color: "#F24E1E", category: "design", description: "UI Design", icon: SiFigma },
+    { name: "Git", color: "#F05032", category: "backend", description: "Versioning", icon: SiGit },
+    { name: "Claude", color: "#D97757", category: "ai", description: "Anthropic", icon: SiAnthropic },
+    { name: "OpenAI", color: "#10A37F", category: "ai", description: "AI Workflows", icon: SiOpenai },
+  ]
+
+  const filteredSkills = activeSkillCategory === "all"
+    ? skills
+    : skills.filter((skill) => skill.category === activeSkillCategory)
+
+  const visibleSkills = filteredSkills.length > 0 ? filteredSkills : skills
+
   // Animation variants
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -895,14 +969,14 @@ function Portfolio() {
     },
   }
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: defaultEase,
       },
     },
   }
@@ -925,7 +999,7 @@ function Portfolio() {
       <motion.nav
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+        transition={{ duration: 0.8, ease: defaultEase }}
         className={`fixed top-0 w-full z-40 backdrop-blur-md border-b transition-colors duration-500 ${theme === "dark" ? "bg-neutral-950/80 border-neutral-800" : "bg-neutral-50/80 border-neutral-200"
           }`}
       >
@@ -933,7 +1007,7 @@ function Portfolio() {
           <div className="flex justify-between items-center py-4">
             <motion.div
               whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 0.3, ease: defaultEase }}
               className="flex items-center gap-2"
             >
               <Image
@@ -960,7 +1034,7 @@ function Portfolio() {
                       : "text-neutral-500 hover:text-neutral-950"
                     }`}
                   whileHover={{ y: -2 }}
-                  transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  transition={{ duration: 0.3, ease: defaultEase }}
                 >
                   {t(item)}
                   {activeSection === item && (
@@ -968,7 +1042,7 @@ function Portfolio() {
                       layoutId="activeNav"
                       className={`absolute -bottom-1 left-0 right-0 h-px ${theme === "dark" ? "bg-neutral-50" : "bg-neutral-950"
                         }`}
-                      transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                      transition={{ duration: 0.3, ease: defaultEase }}
                     />
                   )}
                 </motion.button>
@@ -1073,7 +1147,7 @@ function Portfolio() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 0.4, ease: defaultEase }}
               className={`md:hidden border-t ${theme === "dark" ? "bg-neutral-950 border-neutral-800" : "bg-neutral-50 border-neutral-200"
                 }`}
             >
@@ -1152,7 +1226,7 @@ function Portfolio() {
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 1, delay: 0.2, ease: defaultEase }}
               className="lg:col-span-3 order-2 lg:order-1"
             >
               <p className={`text-sm tracking-widest uppercase mb-4 ${theme === "dark" ? "text-neutral-500" : "text-neutral-500"}`}>
@@ -1174,7 +1248,7 @@ function Portfolio() {
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ y: -3 }}
-                    transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    transition={{ duration: 0.3, ease: defaultEase }}
                     className={`p-2 rounded-full border transition-colors duration-300 ${theme === "dark"
                       ? "border-neutral-800 hover:border-neutral-600 text-neutral-400 hover:text-neutral-50"
                       : "border-neutral-300 hover:border-neutral-400 text-neutral-600 hover:text-neutral-950"
@@ -1191,7 +1265,7 @@ function Portfolio() {
             <motion.div
               initial={{ opacity: 0, y: 60 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 1.2, ease: defaultEase }}
               className="lg:col-span-9 order-1 lg:order-2"
             >
               <h1 className="text-[clamp(3rem,12vw,10rem)] font-bold leading-[0.85] tracking-tighter">
@@ -1199,7 +1273,7 @@ function Portfolio() {
                   className="block"
                   initial={{ opacity: 0, x: 100 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 1, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  transition={{ duration: 1, delay: 0.4, ease: defaultEase }}
                 >
                   JOÃO
                 </motion.span>
@@ -1207,7 +1281,7 @@ function Portfolio() {
                   className={`block ${theme === "dark" ? "text-neutral-600" : "text-neutral-400"}`}
                   initial={{ opacity: 0, x: 100 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 1, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  transition={{ duration: 1, delay: 0.6, ease: defaultEase }}
                 >
                   ARAUJO
                 </motion.span>
@@ -1228,7 +1302,7 @@ function Portfolio() {
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 1, delay: 1.2, ease: defaultEase }}
             className="flex flex-wrap gap-4 mt-16"
           >
             <MagneticButton
@@ -1295,7 +1369,7 @@ function Portfolio() {
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    transition={{ duration: 0.8, ease: defaultEase }}
                     viewport={{ once: true }}
                     className="relative w-32 h-32 md:w-40 md:h-40"
                   >
@@ -1350,10 +1424,12 @@ function Portfolio() {
         </div>
       </section>
 
-      {/* Skills Section - Colorful with Real Logos */}
+      {/* Skills Section */}
       <section
         id="skills"
-        className={`py-32 lg:py-48 px-6 lg:px-12 ${theme === "dark" ? "bg-neutral-900" : "bg-neutral-100"}`}
+        className={`py-32 lg:py-48 px-6 lg:px-12 transition-colors duration-500 ${
+          theme === "dark" ? "bg-neutral-900 text-neutral-50" : "bg-neutral-100 text-neutral-950"
+        }`}
       >
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -1362,30 +1438,60 @@ function Portfolio() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
           >
-            {/* Header */}
-            <motion.div variants={itemVariants} className="flex items-start justify-between mb-16">
-              <div>
+            <motion.div variants={itemVariants} className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end mb-16">
+              <div className="lg:col-span-4">
                 <p className={`text-xs tracking-widest uppercase mb-4 ${theme === "dark" ? "text-neutral-500" : "text-neutral-500"}`}>
                   02 / {t("skills")}
                 </p>
-                <h2 className="text-4xl lg:text-5xl font-bold tracking-tight">{t("skillsTitle")}</h2>
+              </div>
+
+              <div className="lg:col-span-8">
+                <h2 className="text-4xl lg:text-6xl font-bold tracking-tight leading-none">
+                  Ferramentas que eu
+                  <span className={`block ${theme === "dark" ? "text-neutral-500" : "text-neutral-400"}`}>uso todos os dias.</span>
+                </h2>
+                <p className={`mt-6 max-w-2xl text-base leading-relaxed ${theme === "dark" ? "text-neutral-400" : "text-neutral-600"}`}>
+                  Uma stack prática para criar interfaces fortes, backend confiável, integrações e produtos com cara
+                  profissional. Também inclui meu uso de IA no fluxo de desenvolvimento.
+                </p>
               </div>
             </motion.div>
 
-            {/* Skills Grid with Real Logos */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
-              {skills.map((skill, index) => (
-                <motion.div
-                  key={skill.name}
-                  variants={itemVariants}
-                  whileHover={{ y: -8, scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
-                  className={`p-6 rounded-xl border text-center transition-all duration-500 ${theme === "dark"
-                    ? "bg-neutral-950 border-neutral-800 hover:border-neutral-600 hover:shadow-lg hover:shadow-neutral-900/50"
-                    : "bg-white border-neutral-200 hover:border-neutral-300 hover:shadow-lg hover:shadow-neutral-200/50"
-                    }`}
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-3 mb-10">
+              {skillCategories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => setActiveSkillCategory(category.id)}
+                  className={`rounded-full border px-4 py-2 text-[11px] font-medium uppercase tracking-[0.22em] transition-all duration-300 ${
+                    activeSkillCategory === category.id
+                      ? theme === "dark"
+                        ? "border-neutral-50 bg-neutral-50 text-neutral-950"
+                        : "border-neutral-950 bg-neutral-950 text-neutral-50"
+                      : theme === "dark"
+                        ? "border-neutral-800 bg-neutral-950 text-neutral-400 hover:border-neutral-600 hover:text-white"
+                        : "border-neutral-300 bg-white text-neutral-500 hover:border-neutral-500 hover:text-neutral-950"
+                  }`}
                 >
-                  <TechLogo name={skill.name} color={skill.color} />
+                  {category.label}
+                </button>
+              ))}
+            </motion.div>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+              {visibleSkills.map((skill) => (
+                <motion.div
+                  key={`${activeSkillCategory}-${skill.name}`}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  whileHover={{ y: -8 }}
+                  transition={{ duration: 0.35, ease: defaultEase }}
+                  className={`rounded-[28px] border p-6 transition-all duration-300 ${
+                    theme === "dark"
+                      ? "border-neutral-800 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))] hover:border-neutral-600 hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))]"
+                      : "border-neutral-200 bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(245,245,245,0.92))] hover:border-neutral-300 hover:shadow-lg hover:shadow-neutral-200/70"
+                  }`}
+                >
+                  <SkillCard skill={skill} theme={theme} />
                 </motion.div>
               ))}
             </div>
@@ -1425,7 +1531,7 @@ function Portfolio() {
                     <div className="relative overflow-hidden rounded-sm">
                       <motion.div
                         whileHover={{ scale: 1.03 }}
-                        transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+                        transition={{ duration: 0.6, ease: defaultEase }}
                       >
                         <img
                           src={project.image}
@@ -1653,7 +1759,7 @@ function Portfolio() {
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ x: 8 }}
-                    transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    transition={{ duration: 0.3, ease: defaultEase }}
                     className={`flex items-center gap-4 p-4 rounded-sm border transition-all duration-300 ${theme === "dark"
                       ? "bg-neutral-950 border-neutral-800 hover:border-neutral-700"
                       : "bg-white border-neutral-200 hover:border-neutral-300"
@@ -1785,7 +1891,7 @@ function Portfolio() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 0.3, ease: defaultEase }}
             whileHover={{ y: -2 }}
             onClick={scrollToTop}
             className={`fixed bottom-8 right-8 p-3 rounded-full border transition-all duration-300 z-40 ${theme === "dark"
