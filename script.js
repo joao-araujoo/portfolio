@@ -742,8 +742,8 @@ function setupHorizontalScroll() {
     scrollTrigger: {
       id: 'horizontal-projects',
       trigger: wrapper,
-      start: 'top 50%',
-      end: () => `+=${distance + Math.round(window.innerHeight * 0.4)}`,
+      start: 'top 75%',
+      end: () => `+=${distance + Math.round(window.innerHeight * 0.5)}`,
       pin: true,
       pinSpacing: true,
       anticipatePin: 1,
