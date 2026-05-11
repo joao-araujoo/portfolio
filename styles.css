@@ -842,13 +842,16 @@ html[data-theme="light"] .theme-toggle .moon {
 }
 
 .project-card {
+  position: relative;
+  flex: 0 0 auto;
   width: min(78vw, 850px);
-  height: 100%;
-  min-height: 520px;
+  height: min(560px, calc(100svh - var(--header-h) - 96px));
+  min-height: 460px;
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   gap: 28px;
   padding: 22px;
+  overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: linear-gradient(135deg, var(--surface-strong), var(--surface)) !important;
@@ -1285,15 +1288,15 @@ html[data-theme="light"] .theme-toggle .moon {
 
   .project-card {
     width: min(86vw, 760px);
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1.05fr) minmax(250px, 0.95fr);
   }
 
   .project-content {
-    padding: 0 4px 14px;
+    padding: 12px 4px 12px 0;
   }
 
   .project-image {
-    min-height: 340px;
+    min-height: 100%;
   }
 }
 
@@ -1379,13 +1382,18 @@ html[data-theme="light"] .theme-toggle .moon {
 
   .projects-track {
     display: grid;
+    gap: 22px;
     width: auto;
     padding-inline: 16px;
+    transform: none !important;
   }
 
   .project-card {
     width: 100%;
+    height: auto;
     min-height: auto;
+    grid-template-columns: 1fr;
+    overflow: visible;
   }
 
   .project-image {
@@ -1529,18 +1537,20 @@ html[data-theme="light"] .theme-toggle .moon {
 }
 
 .horizontal-wrapper {
-  min-height: auto;
+  min-height: min(680px, calc(100svh - var(--header-h) - 48px));
   display: flex;
-  align-items: stretch;
+  align-items: center;
   justify-content: flex-start;
   overflow: hidden;
   will-change: transform;
 }
 
 .projects-track {
-  align-items: stretch;
-  justify-content: flex-start;
-  padding: 0 max(24px, calc((100vw - var(--max)) / 2)) 0;
+  display: flex;
+  gap: 28px;
+  width: max-content;
+  align-items: center;
+  padding: 0 calc((100vw - min(var(--max), calc(100vw - 48px))) / 2) 0;
 }
 
 .project-card::after {
@@ -1710,6 +1720,22 @@ html[data-theme="light"] .theme-toggle .moon {
   .horizontal-wrapper {
     min-height: auto;
     display: block;
+    overflow: visible;
+  }
+
+  .projects-track {
+    display: grid;
+    gap: 22px;
+    width: auto;
+    padding-inline: 16px;
+    transform: none !important;
+  }
+
+  .project-card {
+    width: 100%;
+    height: auto;
+    min-height: auto;
+    grid-template-columns: 1fr;
     overflow: visible;
   }
 

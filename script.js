@@ -738,12 +738,12 @@ function setupHorizontalScroll() {
 
   window.gsap.to(track, {
     x: -distance,
-    ease: 'power2.inOut',
+    ease: 'none',
     scrollTrigger: {
       id: 'horizontal-projects',
       trigger: wrapper,
-      start: 'top 75%',
-      end: () => `+=${distance + Math.round(window.innerHeight * 0.5)}`,
+      start: 'center center',
+      end: () => `+=${distance + Math.round(window.innerHeight * 0.65)}`,
       pin: true,
       pinSpacing: true,
       anticipatePin: 1,
