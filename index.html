@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html lang="pt-BR" data-theme="dark">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Portfólio de João Araujo, desenvolvedor Full-Stack e estudante de Ciência da Computação." />
+  <meta name="description"
+    content="Portfólio de João Araujo, desenvolvedor Full-Stack e estudante de Ciência da Computação." />
   <meta name="theme-color" content="#08090b" />
   <meta property="og:title" content="João Araujo | Desenvolvedor Full-Stack" />
-  <meta property="og:description" content="Portfólio com projetos, habilidades e experiência em desenvolvimento full stack." />
+  <meta property="og:description"
+    content="Portfólio com projetos, habilidades e experiência em desenvolvimento full stack." />
   <meta property="og:type" content="website" />
   <title>João Araujo | Portfólio</title>
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/logo.png" type="image/svg+xml" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
   <div class="noise" aria-hidden="true"></div>
   <div class="cursor-glow" aria-hidden="true"></div>
 
   <header class="site-header" data-animate="down">
     <a href="#inicio" class="brand" aria-label="Voltar ao início">
-      <span>JA</span>
+      <img src="assets/logo.png" alt="Logo de João Araujo" class="logo" />
     </a>
 
     <button class="nav-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">
@@ -35,6 +39,17 @@
       <a href="#habilidades" class="nav-link" data-i18n="nav.skills">Habilidades</a>
       <a href="#projetos" class="nav-link" data-i18n="nav.projects">Projetos</a>
       <a href="#contato" class="nav-link" data-i18n="nav.contact">Contato</a>
+      <div class="mobile-menu-actions" aria-label="Configurações do menu mobile">
+        <button class="icon-button theme-toggle" type="button" aria-label="Alternar tema">
+          <i class="fa-regular fa-sun sun" aria-hidden="true"></i>
+          <i class="fa-regular fa-moon moon" aria-hidden="true"></i>
+        </button>
+        <div class="language-switcher" aria-label="Selecionar idioma">
+          <button type="button" class="lang-button is-active" data-lang="pt">PT</button>
+          <button type="button" class="lang-button" data-lang="en">EN</button>
+          <button type="button" class="lang-button" data-lang="es">ES</button>
+        </div>
+      </div>
     </nav>
 
     <div class="header-actions">
@@ -66,8 +81,11 @@
             <span>João</span>
             <span>Araujo</span>
           </h1>
-          <p class="hero-subtitle" data-i18n="hero.subtitle">Desenvolvedor Full-Stack & Estudante de Ciência da Computação</p>
-          <p class="hero-description" data-i18n="hero.description">Estudante de Ciência da Computação na UNIFESP com 5 anos de experiência em desenvolvimento full stack. Apaixonado por criar soluções digitais inovadoras e funcionais.</p>
+          <p class="hero-subtitle" data-i18n="hero.subtitle">Desenvolvedor Full-Stack & Estudante de Ciência da
+            Computação</p>
+          <p class="hero-description" data-i18n="hero.description">Estudante de Ciência da Computação na UNIFESP com 5
+            anos de experiência em desenvolvimento full stack. Apaixonado por criar soluções digitais inovadoras e
+            funcionais.</p>
 
           <div class="hero-actions">
             <a href="#projetos" class="button button-primary">
@@ -78,9 +96,12 @@
           </div>
 
           <div class="social-list" aria-label="Links sociais">
-            <a href="https://github.com/joao-araujoo" target="_blank" rel="noreferrer" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
-            <a href="https://linkedin.com/in/joao-araujoo" target="_blank" rel="noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
-            <a href="mailto:joao.araujoo2007@gmail.com" aria-label="Email"><i class="fa-regular fa-envelope" aria-hidden="true"></i></a>
+            <a href="https://github.com/joao-araujoo" target="_blank" rel="noreferrer" aria-label="GitHub"><i
+                class="fa-brands fa-github" aria-hidden="true"></i></a>
+            <a href="https://linkedin.com/in/joao-araujoo" target="_blank" rel="noreferrer" aria-label="LinkedIn"><i
+                class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+            <a href="mailto:joao.araujoo2007@gmail.com" aria-label="Email"><i class="fa-regular fa-envelope"
+                aria-hidden="true"></i></a>
           </div>
         </div>
 
@@ -92,7 +113,7 @@
               </div>
               <pre aria-label="Código decorativo"><code>const developer = {
   name: 'João Araujo',
-  stack: ['React', 'Node', 'MongoDB'],
+  stack: ['React', 'Node', 'SQL'],
   focus: 'produtos reais',
   mindset: 'build, test, improve'
 };</code></pre>
@@ -121,11 +142,15 @@
         <div class="about-content" data-animate="right">
           <h2 id="about-title"><span>5</span> <span data-i18n="about.title">anos de experiência</span></h2>
           <p class="section-lead" data-i18n="about.lead">em desenvolvimento full stack</p>
-          <p data-i18n="about.text">Estudante de Ciência da Computação na UNIFESP, atualmente estagiando como desenvolvedor Full-Stack na Appstorm.</p>
+          <p data-i18n="about.text">Estudante de Ciência da Computação na UNIFESP, atualmente estagiando como
+            desenvolvedor Full-Stack na Appstorm.</p>
           <div class="pill-row">
-            <span class="about-pill"><img class="pill-icon" src="assets/logos/appstorm_logo.png" alt="Appstorm" /><span data-i18n="about.badge1">Estagiário Full-Stack @ Appstorm</span></span>
-            <span class="about-pill"><img class="pill-icon" src="assets/logos/Unifesp_completa_policromia_RGB.png" alt="UNIFESP" /><span data-i18n="about.badge2">Ciência da Computação @ UNIFESP</span></span>
-            <span class="about-pill"><i class="fa-solid fa-location-dot pill-fa" aria-hidden="true"></i><span data-i18n="about.badge3">São José dos Campos, SP</span></span>
+            <span class="about-pill"><img class="pill-icon" src="assets/logos/appstorm_logo.png" alt="Appstorm" /><span
+                data-i18n="about.badge1">Estagiário Full-Stack @ Appstorm</span></span>
+            <span class="about-pill"><img class="pill-icon" src="assets/logos/Unifesp_completa_policromia_RGB.png"
+                alt="UNIFESP" /><span data-i18n="about.badge2">Ciência da Computação @ UNIFESP</span></span>
+            <span class="about-pill"><i class="fa-solid fa-location-dot pill-fa" aria-hidden="true"></i><span
+                data-i18n="about.badge3">São José dos Campos, SP</span></span>
           </div>
         </div>
       </div>
@@ -135,17 +160,24 @@
       <div class="container">
         <div class="section-heading" data-animate="up">
           <p class="eyebrow"><span>02</span> / <span data-i18n="skills.marker">Habilidades</span></p>
-          <h2 id="skills-title"><span data-i18n="skills.titleA">Minha Stack</span><br><span class="muted" data-i18n="skills.titleB">Principal.</span></h2>
-          <p data-i18n="skills.text">Tecnologias que fazem parte da minha rotina para criar interfaces, APIs, bancos de dados, dashboards, integrações, deploys e fluxos com IA.</p>
+          <h2 id="skills-title"><span data-i18n="skills.titleA">Stack que uso para</span><br><span class="muted"
+              data-i18n="skills.titleB">criar produtos completos.</span></h2>
+          <p data-i18n="skills.text">Tecnologias que fazem parte da minha rotina para criar interfaces, APIs, bancos de
+            dados, dashboards, integrações, deploys e fluxos com IA.</p>
         </div>
 
         <div class="filter-bar" data-animate="up" role="list" aria-label="Filtros de habilidades">
-          <button class="filter-button is-active" type="button" data-filter="all" data-i18n="skills.filters.all">Todos</button>
-          <button class="filter-button" type="button" data-filter="frontend" data-i18n="skills.filters.frontend">Frontend</button>
-          <button class="filter-button" type="button" data-filter="backend" data-i18n="skills.filters.backend">Backend</button>
+          <button class="filter-button is-active" type="button" data-filter="all"
+            data-i18n="skills.filters.all">Todos</button>
+          <button class="filter-button" type="button" data-filter="frontend"
+            data-i18n="skills.filters.frontend">Frontend</button>
+          <button class="filter-button" type="button" data-filter="backend"
+            data-i18n="skills.filters.backend">Backend</button>
           <button class="filter-button" type="button" data-filter="data" data-i18n="skills.filters.data">Dados</button>
-          <button class="filter-button" type="button" data-filter="mobile" data-i18n="skills.filters.mobile">Mobile</button>
-          <button class="filter-button" type="button" data-filter="design" data-i18n="skills.filters.design">Design</button>
+          <button class="filter-button" type="button" data-filter="mobile"
+            data-i18n="skills.filters.mobile">Mobile</button>
+          <button class="filter-button" type="button" data-filter="design"
+            data-i18n="skills.filters.design">Design</button>
           <button class="filter-button" type="button" data-filter="ai" data-i18n="skills.filters.ai">AI</button>
         </div>
 
@@ -158,7 +190,8 @@
         <div class="section-heading projects-heading" data-animate="up">
           <p class="eyebrow"><span>03</span> / <span data-i18n="projects.marker">Projetos</span></p>
           <h2 id="projects-title" data-i18n="projects.title">Projetos em Destaque</h2>
-          <p data-i18n="projects.text">Uma seleção de produtos que mostram minha evolução em front-end, back-end, banco de dados, autenticação, dashboards e deploy.</p>
+          <p data-i18n="projects.text">Uma seleção de produtos que mostram minha evolução em front-end, back-end, banco
+            de dados, autenticação, dashboards e deploy.</p>
         </div>
       </div>
 
@@ -171,8 +204,10 @@
       <div class="container contact-grid">
         <div class="contact-content" data-animate="left">
           <p class="eyebrow"><span>04</span> / <span data-i18n="contact.marker">Contato</span></p>
-          <h2 id="contact-title"><span data-i18n="contact.titleA">Vamos Trabalhar</span><br><span data-i18n="contact.titleB">Juntos</span></h2>
-          <p data-i18n="contact.text">Estou sempre interessado em novas oportunidades e projetos desafiadores. Vamos conversar sobre como posso contribuir com seus projetos!</p>
+          <h2 id="contact-title"><span data-i18n="contact.titleA">Vamos Trabalhar</span><br><span
+              data-i18n="contact.titleB">Juntos</span></h2>
+          <p data-i18n="contact.text">Estou sempre interessado em novas oportunidades e projetos desafiadores. Vamos
+            conversar sobre como posso contribuir com seus projetos!</p>
 
           <div class="contact-cards">
             <a href="mailto:joao.araujoo2007@gmail.com" class="contact-card">
@@ -196,15 +231,18 @@
         <form class="contact-form" id="contactForm" data-animate="right">
           <label>
             <span data-i18n="contact.form.name">Nome</span>
-            <input type="text" name="name" autocomplete="name" required data-i18n-placeholder="contact.form.namePlaceholder" placeholder="Seu nome" />
+            <input type="text" name="name" autocomplete="name" required
+              data-i18n-placeholder="contact.form.namePlaceholder" placeholder="Seu nome" />
           </label>
           <label>
             <span data-i18n="contact.form.email">Email</span>
-            <input type="email" name="email" autocomplete="email" required data-i18n-placeholder="contact.form.emailPlaceholder" placeholder="seu@email.com" />
+            <input type="email" name="email" autocomplete="email" required
+              data-i18n-placeholder="contact.form.emailPlaceholder" placeholder="seu@email.com" />
           </label>
           <label>
             <span data-i18n="contact.form.message">Mensagem</span>
-            <textarea name="message" rows="6" required data-i18n-placeholder="contact.form.messagePlaceholder" placeholder="Conte-me sobre seu projeto..."></textarea>
+            <textarea name="message" rows="6" required data-i18n-placeholder="contact.form.messagePlaceholder"
+              placeholder="Conte-me sobre seu projeto..."></textarea>
           </label>
           <button type="submit" class="button button-primary" data-i18n="contact.form.submit">Enviar Mensagem</button>
           <p class="form-note" id="formNote" aria-live="polite"></p>
@@ -215,12 +253,15 @@
 
   <footer class="footer">
     <div class="container footer-inner">
-      <a href="#inicio" class="brand"><span>JA</span></a>
+      <a href="#inicio" class="brand"><img src="assets/logo.png" alt="Logo de João Araujo" class="logo" /></a>
       <p>© 2026 João Araujo. <span data-i18n="footer.rights">Todos os direitos reservados.</span></p>
       <div class="social-list" aria-label="Links sociais do rodapé">
-        <a href="https://github.com/joao-araujoo" target="_blank" rel="noreferrer" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
-        <a href="https://linkedin.com/in/joao-araujoo" target="_blank" rel="noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
-        <a href="mailto:joao.araujoo2007@gmail.com" aria-label="Email"><i class="fa-regular fa-envelope" aria-hidden="true"></i></a>
+        <a href="https://github.com/joao-araujoo" target="_blank" rel="noreferrer" aria-label="GitHub"><i
+            class="fa-brands fa-github" aria-hidden="true"></i></a>
+        <a href="https://linkedin.com/in/joao-araujoo" target="_blank" rel="noreferrer" aria-label="LinkedIn"><i
+            class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+        <a href="mailto:joao.araujoo2007@gmail.com" aria-label="Email"><i class="fa-regular fa-envelope"
+            aria-hidden="true"></i></a>
       </div>
     </div>
   </footer>
@@ -250,13 +291,14 @@
     </div>
   </dialog>
 
-  <dialog class="image-modal" id="imageModal" aria-label="Visualizar imagem">
-    <button class="modal-close" type="button" aria-label="Fechar">×</button>
-    <img id="imageModalContent" alt="Imagem expandida" />
+  <dialog class="image-modal" id="imageModal" aria-label="Imagem ampliada do projeto">
+    <button class="image-modal-close" type="button" aria-label="Fechar">×</button>
+    <img id="imageModalImg" src="" alt="" />
   </dialog>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="script.js" defer></script>
 </body>
+
 </html>

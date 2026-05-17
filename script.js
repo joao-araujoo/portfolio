@@ -230,7 +230,7 @@ const projects = [
     title: 'Faltômetro UNIFESP',
     type: { pt: 'Projeto Solo', en: 'Solo Project', es: 'Proyecto Solo' },
     status: { pt: 'Em Produção', en: 'In Production', es: 'En Producción' },
-    image: 'assets/projects/faltometro-01.png',
+    image: 'assets/logos/faltometro.svg',
     gallery: [
       'assets/projects/faltometro-01.png',
       'assets/projects/faltometro-02.png',
@@ -238,7 +238,7 @@ const projects = [
       'assets/projects/faltometro-04.png'
     ],
     live: 'https://app-faltometro-unifesp.netlify.app/',
-    code: '#',
+    code: 'https://github.com/joao-araujoo',
     tech: ['HTML', 'CSS', 'JavaScript', 'Firebase'],
     short: {
       pt: 'Sistema de controle de faltas para estudantes da UNIFESP com 200+ usuários conectados.',
@@ -262,7 +262,7 @@ const projects = [
     title: 'Obsyd',
     type: { pt: 'Projeto Solo', en: 'Solo Project', es: 'Proyecto Solo' },
     status: { pt: 'Em Desenvolvimento', en: 'In Development', es: 'En Desarrollo' },
-    image: 'assets/projects/obsyd-01.png',
+    image: 'assets/logos/obsyd-mark.svg',
     gallery: [
       'assets/projects/obsyd-01.png',
       'assets/projects/obsyd-02.png',
@@ -270,7 +270,7 @@ const projects = [
       'assets/projects/obsyd-04.png'
     ],
     live: 'https://obsyd.onrender.com/',
-    code: '#',
+    code: 'https://github.com/joao-araujoo/obsyd',
     tech: ['Node.js', 'Neon PostgreSQL', 'Chart.js', 'Render'],
     short: {
       pt: 'Plataforma full-stack de organização financeira com autenticação real e persistência no Neon.',
@@ -294,15 +294,15 @@ const projects = [
     title: 'GastaFofo',
     type: { pt: 'Projeto Solo', en: 'Solo Project', es: 'Proyecto Solo' },
     status: { pt: 'Concluído', en: 'Completed', es: 'Finalizado' },
-    image: 'assets/projects/gastafofo-01.png',
+    image: 'assets/logos/gastafofo.png',
     gallery: [
       'assets/projects/gastafofo-01.png',
       'assets/projects/gastafofo-02.png',
       'assets/projects/gastafofo-03.png',
       'assets/projects/gastafofo-04.png'
     ],
-    live: '#',
-    code: '#',
+    live: 'https://gastafofo.netlify.app/',
+    code: 'https://github.com/joao-araujoo',
     tech: ['HTML', 'CSS', 'JavaScript', 'Chart.js'],
     short: {
       pt: 'Aplicação de controle financeiro pessoal com interface moderna e recursos avançados.',
@@ -326,15 +326,15 @@ const projects = [
     title: 'ElegantCart',
     type: { pt: 'Projeto Solo', en: 'Solo Project', es: 'Proyecto Solo' },
     status: { pt: 'Concluído', en: 'Completed', es: 'Finalizado' },
-    image: 'assets/projects/elegantcart-01.png',
+    image: 'assets/logos/elegantcart.png',
     gallery: [
       'assets/projects/elegantcart-01.png',
       'assets/projects/elegantcart-02.png',
       'assets/projects/elegantcart-03.png',
       'assets/project-placeholder.svg'
     ],
-    live: '#',
-    code: '#',
+    live: 'https://elegantcart.vercel.app/',
+    code: 'https://github.com/joao-araujoo/Projects/tree/main/%C3%89l%C3%A9gantCart',
     tech: ['React', 'JavaScript', 'Node.js', 'Express', 'MongoDB'],
     short: {
       pt: 'Plataforma de e-commerce completa desenvolvida com stack MERN.',
@@ -358,15 +358,15 @@ const projects = [
     title: 'Cantina Bem-Estar',
     type: { pt: 'Projeto em Equipe', en: 'Team Project', es: 'Proyecto en Equipo' },
     status: { pt: 'Concluído', en: 'Completed', es: 'Finalizado' },
-    image: 'assets/projects/cantina-01.png',
+    image: 'assets/logos/cantina-bem-estar.png',
     gallery: [
       'assets/projects/cantina-01.png',
       'assets/projects/cantina-02.png',
       'assets/projects/cantina-03.png',
       'assets/projects/cantina-04.png'
     ],
-    live: '#',
-    code: '#',
+    live: 'https://cantina-bem-estar.vercel.app',
+    code: 'https://github.com/joao-araujoo/cantina-bem-estar',
     tech: ['React', 'Node.js', 'Express', 'Sequelize', 'MySQL'],
     short: {
       pt: 'Sistema de gestão para cantina escolar, TCC premiado em 2º lugar no INIC Jr.',
@@ -439,9 +439,6 @@ function setLanguage(lang) {
   localStorage.setItem('portfolio-lang', lang);
   applyTranslations();
   renderProjects();
-  if (window.ScrollTrigger) {
-    window.ScrollTrigger.refresh();
-  }
 }
 
 function applyTheme() {
@@ -476,8 +473,8 @@ function renderProjects() {
   const t = translations[state.lang] || translations.pt;
   track.innerHTML = projects.map((project, index) => `
     <article class="project-card" data-project-id="${project.id}" data-animate="up" tabindex="0" role="button" aria-label="${t.projects.details}: ${project.title}">
-      <div class="project-image">
-        <img src="${project.image}" alt="Preview ${project.title}" loading="lazy" />
+      <div class="project-image project-image--logo">
+        <img src="${project.logo || project.image}" alt="Logo ${project.title}" loading="lazy" />
       </div>
       <div class="project-content">
         <span class="project-year">${String(index + 1).padStart(2, '0')} · ${project.year}</span>
@@ -519,8 +516,10 @@ function openProjectModal(projectId) {
   const normalizedGallery = [...gallery, 'assets/project-placeholder.svg', 'assets/project-placeholder.svg', 'assets/project-placeholder.svg'].slice(0, 4);
 
   $('#modalGallery').innerHTML = normalizedGallery.map((image, index) => `
-    <figure class="modal-shot" role="button" tabindex="0" data-image-src="${image}" aria-label="Imagem do projeto ${index + 1}, clique para expandir">
-      <img src="${image}" alt="${project.title} screenshot ${index + 1}" loading="lazy" />
+    <figure class="modal-shot">
+      <button class="modal-shot-button" type="button" data-full-image="${image}" aria-label="Ampliar imagem ${index + 1} de ${project.title}">
+        <img src="${image}" alt="${project.title} screenshot ${index + 1}" loading="lazy" />
+      </button>
     </figure>
   `).join('');
   $('#modalTitle').textContent = project.title;
@@ -541,36 +540,34 @@ function openProjectModal(projectId) {
     modal.showModal();
     document.body.classList.add('no-scroll');
   }
-
-  $$('.modal-shot').forEach((shot) => {
-    const openImage = () => openImageModal(shot.dataset.imageSrc);
-    shot.addEventListener('click', openImage);
-    shot.addEventListener('keydown', (event) => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        openImage();
-      }
-    });
-  });
 }
 
-function openImageModal(imageSrc) {
-  const modal = $('#imageModal');
-  const img = $('#imageModalContent');
-  if (!modal || !img) return;
+function openImageModal(src, alt) {
+  const imageModal = $('#imageModal');
+  const image = $('#imageModalImg');
+  if (!imageModal || !image) return;
 
-  img.src = imageSrc;
-  if (typeof modal.showModal === 'function') {
-    modal.showModal();
+  image.src = src;
+  image.alt = alt;
+
+  if (typeof imageModal.showModal === 'function') {
+    imageModal.showModal();
+    document.body.classList.add('no-scroll');
   }
 }
 
 function closeImageModal() {
-  const modal = $('#imageModal');
-  if (modal && modal.open) modal.close();
+  const imageModal = $('#imageModal');
+  const image = $('#imageModalImg');
+  if (imageModal && imageModal.open) imageModal.close();
+  if (image) image.src = '';
+
+  const projectModal = $('#projectModal');
+  if (!projectModal?.open) document.body.classList.remove('no-scroll');
 }
 
 function closeProjectModal() {
+  closeImageModal();
   const modal = $('#projectModal');
   if (modal && modal.open) modal.close();
   document.body.classList.remove('no-scroll');
@@ -594,9 +591,11 @@ function setupHeader() {
 }
 
 function setupThemeToggle() {
-  $('.theme-toggle')?.addEventListener('click', () => {
-    state.theme = state.theme === 'dark' ? 'light' : 'dark';
-    applyTheme();
+  $$('.theme-toggle').forEach((button) => {
+    button.addEventListener('click', () => {
+      state.theme = state.theme === 'dark' ? 'light' : 'dark';
+      applyTheme();
+    });
   });
 }
 
@@ -651,21 +650,44 @@ function setupBackToTop() {
 function setupModal() {
   const modal = $('#projectModal');
   const imageModal = $('#imageModal');
+
   $('.modal-close')?.addEventListener('click', closeProjectModal);
   modal?.addEventListener('click', (event) => {
     if (event.target === modal) closeProjectModal();
   });
+  modal?.addEventListener('cancel', (event) => {
+    event.preventDefault();
+    closeProjectModal();
+  });
+  $('#modalGallery')?.addEventListener('click', (event) => {
+    if (!(event.target instanceof Element)) return;
 
-  const imageClose = imageModal?.querySelector('.modal-close');
-  imageClose?.addEventListener('click', closeImageModal);
+    const button = event.target.closest('.modal-shot-button');
+    if (!button) return;
+
+    const image = button.querySelector('img');
+    openImageModal(button.dataset.fullImage, image?.alt || '');
+  });
+  $('.image-modal-close')?.addEventListener('click', closeImageModal);
   imageModal?.addEventListener('click', (event) => {
     if (event.target === imageModal) closeImageModal();
   });
-
+  imageModal?.addEventListener('cancel', (event) => {
+    event.preventDefault();
+    closeImageModal();
+  });
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      if (imageModal?.open) closeImageModal();
-      else closeProjectModal();
+    if (event.key !== 'Escape') return;
+
+    if (imageModal?.open) {
+      event.preventDefault();
+      closeImageModal();
+      return;
+    }
+
+    if (modal?.open) {
+      event.preventDefault();
+      closeProjectModal();
     }
   });
 }
@@ -729,25 +751,30 @@ function setupHorizontalScroll() {
   window.gsap.set(track, { x: 0 });
 
   if (window.matchMedia('(max-width: 760px)').matches) {
+    wrapper.style.minHeight = '';
     window.ScrollTrigger.refresh();
     return;
   }
 
-  const distance = Math.max(0, track.scrollWidth - window.innerWidth);
+  const viewportWidth = wrapper.clientWidth || window.innerWidth;
+  const distance = Math.max(0, track.scrollWidth - viewportWidth);
   if (distance <= 8) return;
 
+  const headerHeight = Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 0;
+  wrapper.style.minHeight = `calc(100svh - ${headerHeight}px)`;
+
   window.gsap.to(track, {
-    x: -distance,
+    x: () => -Math.max(0, track.scrollWidth - (wrapper.clientWidth || window.innerWidth)),
     ease: 'none',
     scrollTrigger: {
       id: 'horizontal-projects',
       trigger: wrapper,
-      start: 'center center',
-      end: () => `+=${distance + Math.round(window.innerHeight * 0.65)}`,
+      start: () => `top top+=${headerHeight}`,
+      end: () => `+=${Math.max(0, track.scrollWidth - (wrapper.clientWidth || window.innerWidth))}`,
       pin: true,
       pinSpacing: true,
-      anticipatePin: 1,
-      scrub: 0.8,
+      scrub: true,
+      anticipatePin: 0,
       invalidateOnRefresh: true,
       fastScrollEnd: true
     }
@@ -755,7 +782,6 @@ function setupHorizontalScroll() {
 
   window.ScrollTrigger.refresh();
 }
-
 function setupGsapAnimations() {
   if (!window.gsap || !window.ScrollTrigger) return;
 
@@ -771,7 +797,8 @@ function setupGsapAnimations() {
     opacity: 1,
     duration: 0.9,
     ease: 'power3.out',
-    stagger: 0.08
+    stagger: 0.08,
+    scrollTrigger: { trigger: 'body', start: 'top top' }
   });
 
   $$('[data-animate="left"], [data-animate="right"], [data-animate="scale"], [data-animate="fade"]').forEach((element) => {
